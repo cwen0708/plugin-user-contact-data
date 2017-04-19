@@ -38,47 +38,52 @@ class UserContactDataModel(BasicModel):
 
     @classmethod
     def after_get(cls, key, item):
-        item._user = item.user.get()
-        item.password = item._user.password
-        item.old_password = item._user.password
-        item.user_name_proxy = item._user.name
-        item.user_email_proxy = item._user.email
-        item.user_avatar_proxy = item._user.avatar
+        item.password = item.user_instance.password
+        item.old_password = item.user_instance.password
+        item.user_name_proxy = item.user_instance.name
+        item.user_email_proxy = item.user_instance.email
+        item.user_avatar_proxy = item.user_instance.avatar
+
+    @property
+    def user_instance(self):
+        if not hasattr(self, '_user'):
+            self._user = self.user.get()
+        return self._user
 
     def after_put(self, key):
         if self.old_password != self.password:
-            self._user.password = self.password
-            self._user.bycrypt_password()
-            self.password = self._user.password
-            self.old_password = self._user.password
-        self._user.name = self.user_name_proxy
-        self._user.email = self.user_email_proxy
-        self._user.avatar = self.user_avatar_proxy
-        self._user.put()
+            self.user_instance.password = self.password
+            self.user_instance.bycrypt_password()
+            self.password = self.user_instance.password
+            self.old_password = self.user_instance.password
+        self.user_instance.name = self.user_name_proxy
+        self.user_instance.email = self.user_email_proxy
+        self.user_instance.avatar = self.user_avatar_proxy
+        self.user_instance.put()
 
     @property
     def user_name(self):
-        return self._user.name
+        return self.user_instance.name
 
     @user_name.setter
     def user_name(self, value):
         self.user_name_proxy = value
-        self._user.name = value
+        self.user_instance.name = value
 
     @property
     def email(self):
-        return self._user.email
+        return self.user_instance.email
 
     @email.setter
     def email(self, value):
         self.user_email_proxy = value
-        self._user.email = value
+        self.user_instance.email = value
 
     @property
     def avatar(self):
-        return self._user.avatar
+        return self.user_instance.avatar
 
     @avatar.setter
     def avatar(self, value):
         self.user_avatar_proxy = value
-        self._user.avatar = value
+        self.user_instance.avatar = value
