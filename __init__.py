@@ -18,10 +18,11 @@ plugins_helper = {
         'user_contact_data': {
             'group': u'聯絡資料',
             'actions': [
-                {'action': 'list', 'name': u'資料管理'},
-                {'action': 'edit', 'name': u'編輯資料'},
-                {'action': 'view', 'name': u'檢視資料'},
-                {'action': 'delete', 'name': u'刪除資料'},
+                {'action': 'list', 'name': u'聯絡資料管理'},
+                {'action': 'edit', 'name': u'編輯聯絡資料'},
+                {'action': 'view', 'name': u'檢視聯絡資料'},
+                {'action': 'delete', 'name': u'刪除聯絡資料'},
+                {'action': 'plugins_check', 'name': u'啟用停用模組'},
             ]
         }
     }

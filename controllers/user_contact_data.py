@@ -21,6 +21,6 @@ class UserContactData(Controller):
         hidden_in_form = ('name', 'is_enable')
         display_in_list = ('user_name_proxy', 'user_email_proxy', 'telephone', 'mobile', 'address_city', 'address_district')
 
-    @route_menu(list_name=u'backend', text=u'聯絡資料', sort=9803, icon='users', group=u'帳號管理', need_hr_parent=True)
+    @route_menu(list_name=u'backend', text=u'聯絡資料', sort=9803, icon='users', group=u'帳號管理')
     def admin_list(self):
         scaffold.list(self)
