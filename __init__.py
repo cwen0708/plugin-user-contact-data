@@ -19,6 +19,7 @@ plugins_helper = {
             'group': u'聯絡資料',
             'actions': [
                 {'action': 'list', 'name': u'聯絡資料管理'},
+                {'action': 'add', 'name': u'新增聯絡資料'},
                 {'action': 'edit', 'name': u'編輯聯絡資料'},
                 {'action': 'view', 'name': u'檢視聯絡資料'},
                 {'action': 'delete', 'name': u'刪除聯絡資料'},
