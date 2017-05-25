@@ -51,7 +51,7 @@ class UserContactDataModel(BasicModel):
         return self._user
 
     def after_put(self, key):
-        if self.old_password != self.password:
+        if hasattr(self, 'old_password') and self.old_password != self.password:
             self.user_instance.password = self.password
             self.user_instance.bycrypt_password()
             self.password = self.user_instance.password
