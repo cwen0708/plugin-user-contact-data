@@ -5,7 +5,7 @@
 # Author: Qi-Liang Wen (温啓良）
 # Web: http://www.yooliang.com/
 # Date: 2017/2/24.
-from datetime import datetime
+from argeweb import auth, add_authorizations
 from argeweb import Controller, scaffold, route_menu, route_with, route, settings
 from argeweb.components.pagination import Pagination
 from argeweb.components.csrf import CSRF, csrf_protect
@@ -25,6 +25,7 @@ class Form(Controller):
         display_in_list = ('name', 'account')
 
     @route
+    @add_authorizations(auth.check_user)
     @route_with(name='form:user:change_contact_data')
     def change_contact_data(self):
         self.context['data'] = {'result': 'failure'}
