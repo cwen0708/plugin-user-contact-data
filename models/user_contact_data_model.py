@@ -38,6 +38,7 @@ class UserContactDataModel(BasicModel):
 
     @classmethod
     def after_get(cls, key, item):
+        super(UserContactDataModel, cls).after_get(key, item)
         item.password = item.user_instance.password
         item.old_password = item.user_instance.password
         item.user_name_proxy = item.user_instance.name
